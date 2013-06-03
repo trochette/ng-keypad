@@ -1,0 +1,57 @@
+ html, body{
+    width:100%;
+    height:100%;
+    font-family: Helvetica, Arial, sans-serif;
+    padding:10px;
+}
+
+.numpad{
+    left:350px;
+    top:200px;
+}
+
+hr{
+    margin-top:40px;
+}
+
+
+.clear{
+    display: block;
+    clear: both;
+    height: 1px;
+}
+
+.helpers button{
+    width:auto;
+    padding:10px;
+
+}
+
+.values{
+    margin-top:40px;
+    line-height:20px;
+}
+
+
+
+.closed{
+    display:none;
+}
+
+.pressed{
+    background:#666;
+}
+
+.input{
+    display: block;
+    border:2px solid #666;
+    max-width: 100px;
+    padding:5px 10px;
+    height:18px;
+    text-decoration: none;
+    color:#000;
+}
+
+.focus{
+    border:2px solid #FF0000;
+}
