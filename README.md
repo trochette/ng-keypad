@@ -3,7 +3,7 @@
 
 ng-keypad is a simple set of directive that allow you to create a custom keypad to provide on screen user input functionnality. Mobile and desktop compatible. You can view a demo here : [View Demo](http://dev.tommyrochette.com/ng-keypad/demo/).
 
-Keypad design by [Courtny Cotten][http://dribbble.com/court]
+Keypad design by [Courtny Cotten](http://dribbble.com/court)
 
 
 ## Usage
