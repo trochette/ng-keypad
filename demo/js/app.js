@@ -6,8 +6,9 @@
  *
  * @license MIT
  */
-(function(){
-    'use strict';
-    angular.module('app',['ngKeypad','ngDraggable']);
-})();
+//(function(){
+//    'use strict';
+//    angular.module('app',['ngKeypad','ngDraggable']);
+//})();
 
+var kpad = angular.module('app',['ngKeypad','ngDraggable']);
