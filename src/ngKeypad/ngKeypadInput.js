@@ -12,7 +12,7 @@
     /**
      * @Class
      */
-    window.KeypadInput = function ($scope, $element, $attrs, controller) {
+    window.KeypadInput = function ($scope, $element, $attrs, controller,$rootScope) {
 
         var self = this;
 
@@ -36,7 +36,7 @@
                 throw new Error("KeypadInput requires the use of ng-model on this element", $element);
             }
 
-            $scope.$on('destroy', destroy);
+            $rootScope.$on('destroy', destroy);
         };
 
 
@@ -53,14 +53,14 @@
                 clearSelectedElement();
 
                 self.active = true;
-                self.keyListener = $scope.$on(Keypad.KEY_PRESSED, handleKeyPressed);
-                self.closeListener = $scope.$on(Keypad.CLOSED, handleKeypadClosed);
-                self.modifierKeyListener = $scope.$on(Keypad.MODIFIER_KEY_PRESSED, handleModifierKeyPressed);
+                self.keyListener = $rootScope.$on(Keypad.KEY_PRESSED, handleKeyPressed);
+                self.closeListener = $rootScope.$on(Keypad.CLOSED, handleKeypadClosed);
+                self.modifierKeyListener = $rootScope.$on(Keypad.MODIFIER_KEY_PRESSED, handleModifierKeyPressed);
 
                 $element.addClass("focus");
                 $element.focus();
 
-                $scope.$emit(Keypad.OPEN, $attrs.ngKeypadInput);
+                $rootScope.$emit(Keypad.OPEN, $attrs.ngKeypadInput);
 
                 KeypadInput.selectedInput = self;
             }
@@ -190,14 +190,16 @@
     KeypadInput.selectedInput = null;
 
 
-    angular.module('ngKeypad')
-        .directive('ngKeypadInput', function () {
+    angular.module('ngKeypad').directive('ngKeypadInput', ['$rootScope',
+        function ($rootScope) {
             return {
                 restrict: 'A',
                 require: '^ngModel',
                 link: function ($scope, $element, $attrs, controller) {
-                    new KeypadInput($scope, $element, $attrs, controller);
+                    new KeypadInput($scope, $element, $attrs, controller, $rootScope);
                 }
             }
-        });
+        }
+    ]);
+
 })();
