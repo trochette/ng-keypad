@@ -36,7 +36,7 @@
                 throw new Error("KeypadInput requires the use of ng-model on this element", $element);
             }
 
-            $scope.$on('destroy', destroy);
+            $scope.$parent.$on('destroy', destroy);
         };
 
 
@@ -53,9 +53,9 @@
                 clearSelectedElement();
 
                 self.active = true;
-                self.keyListener = $scope.$on(Keypad.KEY_PRESSED, handleKeyPressed);
-                self.closeListener = $scope.$on(Keypad.CLOSED, handleKeypadClosed);
-                self.modifierKeyListener = $scope.$on(Keypad.MODIFIER_KEY_PRESSED, handleModifierKeyPressed);
+                self.keyListener = $scope.$parent.$on(Keypad.KEY_PRESSED, handleKeyPressed);
+                self.closeListener = $scope.$parent.$on(Keypad.CLOSED, handleKeypadClosed);
+                self.modifierKeyListener = $scope.$parent.$on(Keypad.MODIFIER_KEY_PRESSED, handleModifierKeyPressed);
 
                 $element.addClass("focus");
                 $element.focus();

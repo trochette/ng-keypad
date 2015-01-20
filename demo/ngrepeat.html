@@ -23,13 +23,17 @@
     <div ng-include="" src="'partials/keypad/numeric.html'"></div>
 </div>
 
+<h4>Normal</h4>
+<a class="input" data-ng-model="test.value" data-ng-keypad-input="numeric">{{test.value}}</a><br/>
+
+
+<h4>Within ng-repeat</h4>
 <div ng-repeat="item in items">
     <a id="input{{$index}}" class="input" data-ng-model="item.value" data-ng-keypad-input="numeric">{{item.value}}</a><br/>
 </div>
 
 
-<a class="input" data-ng-model="items[0].value" data-ng-keypad-input="numeric">{{item[0].value}}</a><br/>
-
+<h4>Display Items</h4>
 <div ng-repeat="item in items">
     <p>{{item.name}} - {{item.value}}</p>
 </div>
