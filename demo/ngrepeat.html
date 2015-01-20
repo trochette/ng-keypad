@@ -29,7 +29,23 @@
 
 <h4>Within ng-repeat</h4>
 <div ng-repeat="item in items">
-    <a id="input{{$index}}" class="input" data-ng-model="item.value" data-ng-keypad-input="numeric">{{item.value}}</a><br/>
+    <a id="input{{$index}}" class="input" data-ng-model="item.value" data-ng-keypad-input="numeric">{{item.value}}</a>
+    <div ng-if="$even">
+        <div ng-repeat="item2 in $parent.items2">
+            <a style="margin-left:4em;" id="input{{$index}}" class="input" data-ng-model="item2.value" data-ng-keypad-input="numeric">{{item2.value}}</a>
+        </div>
+    </div>
+
+
+    <div ng-if="$odd">
+        <div ng-repeat="item3 in $parent.items3">
+            <a style="margin-left:4em;" id="input{{$index}}" class="input" data-ng-model="item3.value" data-ng-keypad-input="numeric">{{item3.value}}</a>
+        </div>
+    </div>
+
+
+
+    <br/>
 </div>
 
 
@@ -37,6 +53,17 @@
 <div ng-repeat="item in items">
     <p>{{item.name}} - {{item.value}}</p>
 </div>
+
+<h4>Display Items2</h4>
+<div ng-repeat="item in items2">
+    <p>{{item.name}} - {{item.value}}</p>
+</div>
+
+<h4>Display Items3</h4>
+<div ng-repeat="item in items3">
+    <p>{{item.name}} - {{item.value}}</p>
+</div>
+
 
 </body>
 </html>

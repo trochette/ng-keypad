@@ -12,7 +12,7 @@
     /**
      * @Class
      */
-    window.Key = function ($scope, $element, $attrs) {
+    window.Key = function ($scope, $element, $attrs, $rootScope) {
 
         var body = $('body');
 
@@ -28,7 +28,7 @@
                 body.bind('mouseup.ngKey', keyDepressed);
             }
 
-            $scope.$parent.$on('destroy', destroy);
+            $rootScope.$on('destroy', destroy);
         };
 
 
@@ -41,7 +41,7 @@
             $element.addClass('pressed');
             event.preventDefault();
             event.stopImmediatePropagation();
-            $scope.$emit(Key.PRESSED, $attrs.ngKey);
+            $rootScope.$emit(Key.PRESSED, $attrs.ngKey);
         }
 
 
@@ -73,13 +73,15 @@
      */
     Key.PRESSED = "Key.PRESSED";
 
-    angular.module('ngKeypad', [])
-        .directive('ngKey', function () {
+    angular.module('ngKeypad', []).directive('ngKey', ['$rootScope',
+        function ($rootScope) {
             return {
                 restrict: 'A',
                 link: function ($scope, $element, $attrs) {
-                    new Key($scope, $element, $attrs);
+                    new Key($scope, $element, $attrs, $rootScope);
                 }
             };
-        });
+        }
+    ]);
+
 })();

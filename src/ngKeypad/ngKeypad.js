@@ -15,7 +15,6 @@
      * @Class
      */
     window.Keypad = function ($scope, $element, $attrs, $rootScope) {
-
         var locked = false,
             opened = false,
             padId = $attrs.ngKeypad,
@@ -26,7 +25,7 @@
          * based on attributes.
          */
         function init() {
-            $scope.$parent.$on(Key.PRESSED, handleKeyPressed);
+            $rootScope.$on(Key.PRESSED, handleKeyPressed);
             $rootScope.$on(Keypad.TOGGLE_LOCKING, handleLockingToggle);
             $rootScope.$on(Keypad.TOGGLE_OPENING, handleOpeningToggle);
             $rootScope.$on(Keypad.OPEN, handleOpeningToggle);
@@ -56,9 +55,9 @@
         function handleKeyPressed(event, key) {
             if (!locked) {
                 if (key.indexOf('[') === -1 && key.indexOf(']') === -1) {
-                    $scope.$emit(Keypad.KEY_PRESSED, key, padId);
+                    $rootScope.$emit(Keypad.KEY_PRESSED, key, padId);
                 } else {
-                    $scope.$emit(Keypad.MODIFIER_KEY_PRESSED, key.substring(1, key.length - 1), padId);
+                    $rootScope.$emit(Keypad.MODIFIER_KEY_PRESSED, key.substring(1, key.length - 1), padId);
                 }
             }
         }
@@ -126,7 +125,7 @@
          */
         function open() {
             $element.removeClass("closed");
-            $scope.$emit(Keypad.OPENED, padId);
+            $rootScope.$emit(Keypad.OPENED, padId);
             autoClose();
             applyOptions();
         }
@@ -137,7 +136,7 @@
          */
         function close() {
             opened = false;
-            $scope.$emit(Keypad.CLOSED, padId);
+            $rootScope.$emit(Keypad.CLOSED, padId);
             body.off("click.keypad");
             $element.addClass("closed");
         }
