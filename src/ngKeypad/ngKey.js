@@ -28,7 +28,7 @@
                 body.bind('mouseup.ngKey', keyDepressed);
             }
 
-            $scope.$on('destroy', destroy);
+            $scope.$parent.$on('destroy', destroy);
         };
 
 

@@ -26,7 +26,7 @@
          * based on attributes.
          */
         function init() {
-            $scope.$on(Key.PRESSED, handleKeyPressed);
+            $scope.$parent.$on(Key.PRESSED, handleKeyPressed);
             $rootScope.$on(Keypad.TOGGLE_LOCKING, handleLockingToggle);
             $rootScope.$on(Keypad.TOGGLE_OPENING, handleOpeningToggle);
             $rootScope.$on(Keypad.OPEN, handleOpeningToggle);
