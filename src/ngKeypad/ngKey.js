@@ -59,7 +59,7 @@
          */
         function destroy() {
             $element.bind('touchstart.ngKey', keyPressed);
-            bodybind('touchend.ngKey', keyDepressed);
+            body.bind('touchend.ngKey', keyDepressed);
             $element.bind('mousedown.ngKey', keyPressed);
             body.bind('mouseup.ngKey', keyDepressed);
         }
